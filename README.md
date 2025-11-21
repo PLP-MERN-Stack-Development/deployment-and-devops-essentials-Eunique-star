@@ -1,10 +1,9 @@
-````markdown
 # 🚀 MERN Stack Blog & Chat Application - Deployment & DevOps
 
-![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-green)
-![Vercel](https://img.shields.io/badge/Vercel-Frontend-black)
-![Render](https://img.shields.io/badge/Render-Backend-purple)
-![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
+[![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-green)](https://github.com/PLP-MERN-Stack-Development/deployment-and-devops-essentials-Eunique-star/actions)
+[![Vercel](https://img.shields.io/badge/Vercel-Frontend-black)](https://plp-wk7-deployment-and-devops-essen.vercel.app/)
+[![Render](https://img.shields.io/badge/Render-Backend-purple)](https://plp-wk7-deployment-and-devops-essentials.onrender.com)
+[![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)](https://www.mongodb.com/)
 
 This repository contains a full-stack MERN application (MongoDB, Express, React, Node.js) developed as part of the Power Learn Project (PLP). This week's focus was on **Deployment, DevOps, CI/CD Pipelines, and Monitoring**.
 
@@ -62,9 +61,8 @@ If you wish to run this project locally, follow these steps:
 git clone <your-repo-url>
 cd <repo-name>
 ```
-````
 
-### 2\. Install Dependencies
+### 2. Install Dependencies
 
 You need to install dependencies for both the server and the client.
 
@@ -78,7 +76,7 @@ cd ../client
 npm install
 ```
 
-### 3\. Environment Configuration
+### 3. Environment Configuration
 
 Create a `.env` file in the **server** directory with the following variables:
 
@@ -97,7 +95,7 @@ VITE_API_URL=http://localhost:5000/api
 VITE_SOCKET_URL=http://localhost:5000
 ```
 
-### 4\. Run the Application
+### 4. Run the Application
 
 Open two terminals:
 
