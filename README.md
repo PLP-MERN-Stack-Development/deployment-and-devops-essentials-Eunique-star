@@ -1,77 +1,160 @@
-# Deployment and DevOps for MERN Applications
+````markdown
+# 🚀 MERN Stack Blog & Chat Application - Deployment & DevOps
 
-This assignment focuses on deploying a full MERN stack application to production, implementing CI/CD pipelines, and setting up monitoring for your application.
+![GitHub Actions](https://img.shields.io/badge/GitHub_Actions-CI-green)
+![Vercel](https://img.shields.io/badge/Vercel-Frontend-black)
+![Render](https://img.shields.io/badge/Render-Backend-purple)
+![MongoDB](https://img.shields.io/badge/MongoDB-Database-green)
 
-## Assignment Overview
+This repository contains a full-stack MERN application (MongoDB, Express, React, Node.js) developed as part of the Power Learn Project (PLP). This week's focus was on **Deployment, DevOps, CI/CD Pipelines, and Monitoring**.
 
-You will:
-1. Prepare your MERN application for production deployment
-2. Deploy the backend to a cloud platform
-3. Deploy the frontend to a static hosting service
-4. Set up CI/CD pipelines with GitHub Actions
-5. Implement monitoring and maintenance strategies
+## 🌐 Live Deployment
 
-## Getting Started
+The application is fully deployed and accessible via the following links:
 
-1. Accept the GitHub Classroom assignment invitation
-2. Clone your personal repository that was created by GitHub Classroom
-3. Follow the setup instructions in the `Week7-Assignment.md` file
-4. Use the provided templates and configuration files as a starting point
+- **Frontend (Vercel):** [https://plp-wk7-deployment-and-devops-essen.vercel.app/](https://plp-wk7-deployment-and-devops-essen.vercel.app/)
+- **Backend API (Render):** [https://plp-wk7-deployment-and-devops-essentials.onrender.com](https://plp-wk7-deployment-and-devops-essentials.onrender.com)
+- **Health Check Endpoint:** [https://plp-wk7-deployment-and-devops-essentials.onrender.com/health](https://plp-wk7-deployment-and-devops-essentials.onrender.com/health)
 
-## Files Included
+---
 
-- `Week7-Assignment.md`: Detailed assignment instructions
-- `.github/workflows/`: GitHub Actions workflow templates
-- `deployment/`: Deployment configuration files and scripts
-- `.env.example`: Example environment variable templates
-- `monitoring/`: Monitoring configuration examples
+## ⚙️ DevOps & CI/CD Architecture
 
-## Requirements
+### 1. Continuous Integration (CI)
 
-- A completed MERN stack application from previous weeks
-- Accounts on the following services:
-  - GitHub
-  - MongoDB Atlas
-  - Render, Railway, or Heroku (for backend)
-  - Vercel, Netlify, or GitHub Pages (for frontend)
-- Basic understanding of CI/CD concepts
+I have implemented a CI pipeline using **GitHub Actions** to ensure code quality and reliability.
 
-## Deployment Platforms
+- **Trigger:** Runs automatically on every push to the `main` branch.
+- **Workflow File:** `.github/workflows/main.yml`
+- **Jobs:**
+  - Sets up Node.js environment.
+  - Installs dependencies for both Client and Server.
+  - Runs **Unit and Integration Tests** (Jest & Vitest).
+  - Builds the React frontend to check for compilation errors.
 
-### Backend Deployment Options
-- **Render**: Easy to use, free tier available
-- **Railway**: Developer-friendly, generous free tier
-- **Heroku**: Well-established, extensive documentation
+### 2. Continuous Deployment (CD)
 
-### Frontend Deployment Options
-- **Vercel**: Optimized for React apps, easy integration
-- **Netlify**: Great for static sites, good CI/CD
-- **GitHub Pages**: Free, integrated with GitHub
+The application utilizes automatic deployment hooks:
 
-## CI/CD Pipeline
+- **Frontend:** Connected to Vercel. Automatically redeploys when the CI pipeline passes and code is merged to `main`.
+- **Backend:** Connected to Render. Automatically builds and deploys the Express server upon updates to `main`.
 
-The assignment includes templates for setting up GitHub Actions workflows:
-- `frontend-ci.yml`: Tests and builds the React application
-- `backend-ci.yml`: Tests the Express.js backend
-- `frontend-cd.yml`: Deploys the frontend to your chosen platform
-- `backend-cd.yml`: Deploys the backend to your chosen platform
+### 3. Monitoring & Maintenance
 
-## Submission
+To ensure high availability, I have set up uptime monitoring.
 
-Your work will be automatically submitted when you push to your GitHub Classroom repository. Make sure to:
+- **Tool:** UptimeRobot
+- **Target:** Pings the `/health` API endpoint every 5 minutes.
+- **Status:** Alerts are configured for downtime events.
 
-1. Complete all deployment tasks
-2. Set up CI/CD pipelines with GitHub Actions
-3. Deploy both frontend and backend to production
-4. Document your deployment process in the README.md
-5. Include screenshots of your CI/CD pipeline in action
-6. Add URLs to your deployed applications
+**UptimeRobot Dashboard:**
+![UptimeRobot Monitoring](screenshots/upTimeRobot.PNG)
 
-## Resources
+---
 
-- [GitHub Actions Documentation](https://docs.github.com/en/actions)
-- [MongoDB Atlas Documentation](https://docs.atlas.mongodb.com/)
-- [Render Documentation](https://render.com/docs)
-- [Railway Documentation](https://docs.railway.app/)
-- [Vercel Documentation](https://vercel.com/docs)
-- [Netlify Documentation](https://docs.netlify.com/) 
+## 🛠️ Local Installation & Setup
+
+If you wish to run this project locally, follow these steps:
+
+### 1. Clone the Repository
+
+```bash
+git clone <your-repo-url>
+cd <repo-name>
+```
+````
+
+### 2\. Install Dependencies
+
+You need to install dependencies for both the server and the client.
+
+```bash
+# Install Server Dependencies
+cd server
+npm install
+
+# Install Client Dependencies
+cd ../client
+npm install
+```
+
+### 3\. Environment Configuration
+
+Create a `.env` file in the **server** directory with the following variables:
+
+```env
+PORT=5000
+MONGODB_URI=your_mongodb_connection_string
+JWT_SECRET=your_secret_key
+CLIENT_URL=http://localhost:5173
+NODE_ENV=development
+```
+
+Create a `.env` file in the **client** directory:
+
+```env
+VITE_API_URL=http://localhost:5000/api
+VITE_SOCKET_URL=http://localhost:5000
+```
+
+### 4\. Run the Application
+
+Open two terminals:
+
+**Terminal 1 (Server):**
+
+```bash
+cd server
+npm run dev
+```
+
+**Terminal 2 (Client):**
+
+```bash
+cd client
+npm run dev
+```
+
+---
+
+## 🧪 Running Tests
+
+This project includes a comprehensive test suite including Unit, Integration, and End-to-End (E2E) tests.
+
+```bash
+# Run Server Tests
+cd server
+npm test
+
+# Run Client Tests
+cd client
+npm test
+
+# Run E2E Tests (Cypress)
+npx cypress open
+```
+
+---
+
+## 📝 API Documentation
+
+| Method | Endpoint             | Description                               | Access  |
+| :----- | :------------------- | :---------------------------------------- | :------ |
+| `GET`  | `/health`            | Server status check                       | Public  |
+| `GET`  | `/api/posts`         | Get all blog posts                        | Public  |
+| `POST` | `/api/posts`         | Create a new post (supports image upload) | Private |
+| `POST` | `/api/auth/register` | Register a new user                       | Public  |
+| `POST` | `/api/auth/login`    | Login user                                | Public  |
+
+---
+
+## 👤 Author
+
+**Eunique Star**
+
+- MERN Stack Developer
+- PLP Cohort
+
+```
+
+```
